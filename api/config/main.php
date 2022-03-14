@@ -36,17 +36,17 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                [
-                    'class' => 'yii\rest\UrlRule', 
-                    'controller' => 'v1/test',
-                    'extraPatterns' => [
-                        'POST login' => 'login',
-                        'POST getusers' => 'getusers'
-                    ],
-                    'tokens' => [
-                        '{id}' => '<id:\\w+>'
-                    ],
-                ],
+                // [
+                //     'class' => 'yii\rest\UrlRule', 
+                //     'controller' => 'v1/test',
+                //     'extraPatterns' => [
+                //         'POST login' => 'login',
+                //         'POST getusers' => 'getusers'
+                //     ],
+                //     'tokens' => [
+                //         '{id}' => '<id:\\w+>'
+                //     ],
+                // ],
                 [
                     'class' => 'yii\rest\UrlRule', 
                     'controller' => 'v1/login',
@@ -59,36 +59,51 @@ return [
                         '{id}' => '<id:\\w+>'
                     ],
                 ],
+                // [
+                //     'class' => 'yii\rest\UrlRule', 
+                //     'controller' => 'v1/applyleave',
+                //     'extraPatterns' => [
+                //         'POST apply' => 'apply',
+                //         'POST countday' => 'countday',
+                //         'POST leavename' => 'leavename',
+                //         'POST category' => 'category',
+                //         'POST approvalstatus' => 'approvalstatus',
+                //         'POST balance' => 'balance'
+                //     ],
+                //     'tokens' => [
+                //         '{id}' => '<id:\\w+>'
+                //     ],
+                // ],
+                // [
+                //     'class' => 'yii\rest\UrlRule', 
+                //     'controller' => 'v1/status',
+                //     'extraPatterns' => [
+                //         'POST status' => 'status',
+                //         'POST statusdetail' => 'statusdetail',
+                //         'POST statusadmin' => 'statusadmin',
+                //         'POST statusdetailadmin' => 'statusdetailadmin',
+                //         'POST dashboard' => 'dashboard',
+                //         'POST dashboardadmin' => 'dashboardadmin'
+                //     ],
+                //     'tokens' => [
+                //         '{id}' => '<id:\\w+>'
+                //     ],
+                // ], 
                 [
                     'class' => 'yii\rest\UrlRule', 
-                    'controller' => 'v1/applyleave',
+                    'controller' => 'v1/master',
                     'extraPatterns' => [
-                        'POST apply' => 'apply',
-                        'POST countday' => 'countday',
-                        'POST leavename' => 'leavename',
-                        'POST category' => 'category',
-                        'POST approvalstatus' => 'approvalstatus',
-                        'POST balance' => 'balance'
+                        'POST departmentadd' => 'departmentadd',
+                        'POST departmentupdate' => 'departmentupdate',
+                        'POST departmentindex' => 'departmentindex',
+                        'POST sectionadd' => 'sectionadd',
+                        'POST sectionupdate' => 'sectionupdate',
+                        'POST sectionindex' => 'sectionindex'
                     ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
                     ],
-                ],
-                [
-                    'class' => 'yii\rest\UrlRule', 
-                    'controller' => 'v1/status',
-                    'extraPatterns' => [
-                        'POST status' => 'status',
-                        'POST statusdetail' => 'statusdetail',
-                        'POST statusadmin' => 'statusadmin',
-                        'POST statusdetailadmin' => 'statusdetailadmin',
-                        'POST dashboard' => 'dashboard',
-                        'POST dashboardadmin' => 'dashboardadmin'
-                    ],
-                    'tokens' => [
-                        '{id}' => '<id:\\w+>'
-                    ],
-                ],   
+                ],  
                 
             ],        
         ]
