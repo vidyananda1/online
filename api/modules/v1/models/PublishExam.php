@@ -23,14 +23,14 @@ date_default_timezone_set('Asia/Kolkata');
  * @property string|null $updated_date
  * @property string $record_status
  */
-class Section extends \yii\db\ActiveRecord
+class PublishExam extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'sections';
+        return 'publish_exam';
     }
 
     /**
@@ -39,11 +39,11 @@ class Section extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['section_name', 'dept_id', 'created_by'], 'required'],
-            [['dept_id', 'created_by', 'updated_by'], 'integer'],
-            [['created_date', 'updated_date'], 'safe'],
-            [['section_name'], 'string', 'max' => 255],
-            [['record_status'], 'string', 'max' => 1],
+            [['dept_id', 'exam_id','total_mark', 'section_id', 'sub_id', 'no_of_question', 'exam_date', 'exam_start_time', 'duration', 'created_by', 'created_date', 'updated_by', 'updated_date', 'record_status'], 'required'],
+            [['dept_id', 'exam_id', 'section_id', 'sub_id', 'created_by', 'created_date', 'updated_by', 'updated_date', 'record_status'], 'integer'],
+            [['exam_date', 'exam_start_time'], 'safe'],
+            [['no_of_question'], 'string', 'max' => 200],
+            [['duration'], 'string', 'max' => 50],
         ];
     }
 
@@ -54,8 +54,14 @@ class Section extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'section_name' => 'Section Name',
             'dept_id' => 'Dept ID',
+            'exam_id' => 'Exam ID',
+            'section_id' => 'Section ID',
+            'sub_id' => 'Sub ID',
+            'no_of_question' => 'No Of Question',
+            'exam_date' => 'Exam Date',
+            'exam_start_time' => 'Exam Start Time',
+            'duration' => 'Duration',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'updated_by' => 'Updated By',

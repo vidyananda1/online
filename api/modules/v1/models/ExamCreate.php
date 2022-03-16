@@ -23,14 +23,14 @@ date_default_timezone_set('Asia/Kolkata');
  * @property string|null $updated_date
  * @property string $record_status
  */
-class Approvalstatus extends \yii\db\ActiveRecord
+class ExamCreate extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'approval_status';
+        return 'exam_create';
     }
 
     /**
@@ -39,11 +39,11 @@ class Approvalstatus extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name','created_by'], 'required'],
-            [['created_date','status'],'safe'],
-            [['created_by'], 'integer'],
-            [['name'],'string','max'=>20],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' =>\common\models\User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['exam_name', 'dept_id', 'sec_id', 'start_date', 'created_by'], 'required'],
+            [['dept_id', 'sec_id', 'created_by', 'updated_by'], 'integer'],
+            [['start_date', 'created_date', 'updated_date'], 'safe'],
+            [['exam_name'], 'string', 'max' => 255],
+            [['record_status'], 'string', 'max' => 1],
         ];
     }
 
@@ -53,8 +53,16 @@ class Approvalstatus extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Name',
-            
+            'id' => 'ID',
+            'exam_name' => 'Exam Name',
+            'dept_id' => 'Dept ID',
+            'sec_id' => 'Sec ID',
+            'start_date' => 'Start Date',
+            'created_by' => 'Created By',
+            'created_date' => 'Created Date',
+            'updated_by' => 'Updated By',
+            'updated_date' => 'Updated Date',
+            'record_status' => 'Record Status',
         ];
     }
 }

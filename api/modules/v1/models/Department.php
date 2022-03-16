@@ -23,7 +23,7 @@ date_default_timezone_set('Asia/Kolkata');
  * @property string|null $updated_date
  * @property string $record_status
  */
-class Applyleave extends \yii\db\ActiveRecord
+class Department extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

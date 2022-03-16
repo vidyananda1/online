@@ -95,10 +95,16 @@ return [
                     'extraPatterns' => [
                         'POST departmentadd' => 'departmentadd',
                         'POST departmentupdate' => 'departmentupdate',
-                        'POST departmentindex' => 'departmentindex',
+                        'GET departmentindex' => 'departmentindex',
                         'POST sectionadd' => 'sectionadd',
                         'POST sectionupdate' => 'sectionupdate',
-                        'POST sectionindex' => 'sectionindex'
+                        'GET sectionindex' => 'sectionindex',
+                        'POST subjectadd' => 'subjectadd',
+                        'POST subjectupdate' => 'subjectupdate',
+                        'GET subjectindex' => 'subjectindex',
+                        'POST publishadd' => 'publishadd',
+                        'POST publishupdate' => 'publishupdate',
+                        'GET publishindex' => 'publishindex'
                     ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>'

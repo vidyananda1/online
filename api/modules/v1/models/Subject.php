@@ -23,14 +23,14 @@ date_default_timezone_set('Asia/Kolkata');
  * @property string|null $updated_date
  * @property string $record_status
  */
-class Category extends \yii\db\ActiveRecord
+class Subject extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'category';
+        return 'subject';
     }
 
     /**
@@ -39,11 +39,12 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type','no_of_months','name','created_by'], 'required'],
-            [['created_date','status'],'safe'],
-            [['created_by','no_of_months'], 'integer'],
-            [['name'],'string','max'=>20],
-            
+            [['dept_id', 'sub_name', 'sub_code', 'created_by'], 'required'],
+            [['dept_id', 'created_by', 'updated_by'], 'integer'],
+            [['created_date', 'updated_date'], 'safe'],
+            [['sub_name'], 'string', 'max' => 255],
+            [['sub_code'], 'string', 'max' => 10],
+            [['record_status'], 'string', 'max' => 1],
         ];
     }
 
@@ -53,10 +54,15 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Name',
-            'no_of_days' => 'No of Days',
+            'id' => 'ID',
+            'dept_id' => 'Dept ID',
+            'sub_name' => 'Sub Name',
+            'sub_code' => 'Sub Code',
+            'created_by' => 'Created By',
             'created_date' => 'Created Date',
-            
+            'updated_by' => 'Updated By',
+            'updated_date' => 'Updated Date',
+            'record_status' => 'Record Status',
         ];
     }
 }
