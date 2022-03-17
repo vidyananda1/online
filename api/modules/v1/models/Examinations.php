@@ -39,8 +39,8 @@ class Examinations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['exam_name', 'dept_id', 'sec_id', 'start_date', 'created_by'], 'required'],
-            [['dept_id', 'sec_id', 'created_by', 'updated_by'], 'integer'],
+            [['exam_name', 'dept_id', 'section_id', 'start_date', 'created_by'], 'required'],
+            [['dept_id', 'section_id', 'created_by', 'updated_by'], 'integer'],
             [['start_date', 'created_date', 'updated_date'], 'safe'],
             [['exam_name'], 'string', 'max' => 255],
             [['record_status'], 'string', 'max' => 1],
@@ -56,7 +56,7 @@ class Examinations extends \yii\db\ActiveRecord
             'id' => 'ID',
             'exam_name' => 'Exam Name',
             'dept_id' => 'Dept ID',
-            'sec_id' => 'Sec ID',
+            'section_id' => 'Section ID',
             'start_date' => 'Start Date',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',

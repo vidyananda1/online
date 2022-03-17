@@ -5,7 +5,7 @@ namespace api\modules\v1\controllers;
 use Yii;
 use yii\filters\Cors;
 use yii\rest\ActiveController;
-use common\models\Users;
+use common\models\User;
 use common\models\LoginForm;
 use api\modules\v1\models\Appversion;
 use api\modules\v1\models\Departments;
@@ -46,7 +46,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				
 				if($user) {
 					if($postdata = file_get_contents("php://input")) {
@@ -86,7 +86,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 						if($postdata = file_get_contents("php://input")) {
 							$request = json_decode($postdata);	
@@ -127,7 +127,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 							
 						$index = Departments::find()->asArray()->select('id,dept_name')->where(['record_status'=>'1'])->all();
@@ -153,7 +153,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				
 				if($user) {
 					if($postdata = file_get_contents("php://input")) {
@@ -194,7 +194,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 						if($postdata = file_get_contents("php://input")) {
 							$request = json_decode($postdata);	
@@ -236,7 +236,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 							
 						$index = Sections::find()->asArray()->select('id,section_name,dept_id')->where(['record_status'=>'1'])->all();
@@ -260,7 +260,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				
 				if($user) {
 					if($postdata = file_get_contents("php://input")) {
@@ -302,7 +302,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 						if($postdata = file_get_contents("php://input")) {
 							$request = json_decode($postdata);	
@@ -345,7 +345,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 							
 						$index = Subjects::find()->asArray()->select('id,sub_name,sub_code,')->where(['record_status'=>'1'])->all();
@@ -369,20 +369,22 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				
 				if($user) {
 					if($postdata = file_get_contents("php://input")) {
-						// echo "<pre>"; print_r($postdata);die;
+						//echo "<pre>"; print_r($postdata);die;
 						$request = json_decode($postdata);
-						$dub = Examinations::find()->where(['like', 'exam_name', $request->exam_name])->andWhere(['start_date'=>$request->start_date])->andWhere(['record_status'=>'1'])->one();
+						// $dub = Examinations::find()->where(['like','exam_name',$request->name])->andWhere(['start_date'=>$request->start_date])->andWhere(['record_status'=>'1'])->one();
+						$dub = Examinations::find()->where(['like', 'exam_name', $request->exam_name])->andWhere(['section_id'=>$request->section_id])->andWhere(['start_date'=>$request->start_date])->andWhere(['record_status'=>'1'])->one();
+
 						if($dub){
 							$data = ['status'=>'fail', 'msg'=>'Duplicate Entry'];
 						}else{
 							$model = new Examinations();
 							$model->exam_name = $request->exam_name;
 							$model->dept_id = $request->department_id;
-							$model->sec_id = $request->section_id;
+							$model->section_id = $request->section_id;
 							$model->start_date = $request->start_date;
 							$model->created_by = $user->id;
 						if($model->save()){
@@ -412,7 +414,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 						if($postdata = file_get_contents("php://input")) {
 							$request = json_decode($postdata);	
@@ -456,10 +458,10 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 							
-						$index = Examinations::find()->asArray()->select('id,dept_id,exam_name,sec_id,start_date')->where(['record_status'=>'1'])->all();
+						$index = Examinations::find()->asArray()->select('id,dept_id,exam_name,section_id,start_date')->where(['record_status'=>'1'])->all();
 
 						//return json_encode($status);
 						$data = ['status'=>'success', 'msg'=>$index];
@@ -481,7 +483,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				
 				if($user) {
 					if($postdata = file_get_contents("php://input")) {
@@ -529,7 +531,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 						if($postdata = file_get_contents("php://input")) {
 							$request = json_decode($postdata);	
@@ -578,7 +580,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 							
 						$index = PublishExam::find()->asArray()->select('id,exam_id,dept_id,section_id,sub_id,no_of_question,total_mark,exam_date,exam_start_time,duration')->where(['record_status'=>'1'])->all();
@@ -602,7 +604,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				
 				if($user) {
 					if($postdata = file_get_contents("php://input")) {
@@ -650,7 +652,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 						if($postdata = file_get_contents("php://input")) {
 							$request = json_decode($postdata);	
@@ -699,7 +701,7 @@ class MasterController extends ActiveController
 		if($headers = apache_request_headers())
 		{
 			if(isset($headers['token']) && $token = $headers['token']) {
-				$user = Users::find()->where(['auth_key'=>$token])->one();
+				$user = User::find()->where(['auth_key'=>$token])->one();
 				if($user) {
 							
 						$index = PublishExam::find()->asArray()->select('id,exam_id,dept_id,section_id,sub_id,no_of_question,total_mark,exam_date,exam_start_time,duration')->where(['record_status'=>'1'])->all();
