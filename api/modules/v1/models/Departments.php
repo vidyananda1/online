@@ -23,14 +23,14 @@ date_default_timezone_set('Asia/Kolkata');
  * @property string|null $updated_date
  * @property string $record_status
  */
-class Department extends \yii\db\ActiveRecord
+class Departments extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'department';
+        return 'departments';
     }
 
     /**

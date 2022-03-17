@@ -23,14 +23,14 @@ date_default_timezone_set('Asia/Kolkata');
  * @property string|null $updated_date
  * @property string $record_status
  */
-class Section extends \yii\db\ActiveRecord
+class Examinations extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'sections';
+        return 'examinations';
     }
 
     /**
@@ -39,10 +39,10 @@ class Section extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['section_name', 'dept_id', 'created_by'], 'required'],
-            [['dept_id', 'created_by', 'updated_by'], 'integer'],
-            [['created_date', 'updated_date'], 'safe'],
-            [['section_name'], 'string', 'max' => 255],
+            [['exam_name', 'dept_id', 'sec_id', 'start_date', 'created_by'], 'required'],
+            [['dept_id', 'sec_id', 'created_by', 'updated_by'], 'integer'],
+            [['start_date', 'created_date', 'updated_date'], 'safe'],
+            [['exam_name'], 'string', 'max' => 255],
             [['record_status'], 'string', 'max' => 1],
         ];
     }
@@ -54,8 +54,10 @@ class Section extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'section_name' => 'Section Name',
+            'exam_name' => 'Exam Name',
             'dept_id' => 'Dept ID',
+            'sec_id' => 'Sec ID',
+            'start_date' => 'Start Date',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'updated_by' => 'Updated By',

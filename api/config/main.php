@@ -104,7 +104,10 @@ return [
                         'GET subjectindex' => 'subjectindex',
                         'POST publishadd' => 'publishadd',
                         'POST publishupdate' => 'publishupdate',
-                        'GET publishindex' => 'publishindex'
+                        'GET publishindex' => 'publishindex',
+                        'POST examcreate' => 'examcreate',
+                        'POST examupdate' => 'examupdate',
+                        'GET examindex' => 'examindex'
                     ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>'

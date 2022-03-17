@@ -9,7 +9,7 @@ use app\models\Department;
 /**
  * DepartmentSearch represents the model behind the search form of `app\models\Department`.
  */
-class DepartmentSearch extends Department
+class DepartmentsSearch extends Departments
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class DepartmentSearch extends Department
      */
     public function search($params)
     {
-        $query = Department::find();
+        $query = Departments::find();
 
         // add conditions that should always apply here
 
