@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
+use app\models\Subjects;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SubjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -48,10 +49,10 @@ use yii\bootstrap\Modal;
                     'label'=>'Subject Code',
                 ],
                 
-                [
-                    'attribute'=>'dept_id',
-                    'label'=>'Department',
-                ],
+                // [
+                //     'attribute'=>'dept_id',
+                //     'label'=>'Department',
+                // ],
                 
                 [
                     'attribute'=>'record_status',

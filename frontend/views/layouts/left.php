@@ -93,8 +93,8 @@
                 'icon' => 'wrench',
                 'items' => [
                              ['label' => 'Staff-Management','url' => ['/staff']],
-                             ['label' => 'Subject Setting','url' => ['/subject']],
-                             ['label' => 'Department Setting', 'url' => ['/department']],
+                             ['label' => 'Subject Setting','url' => ['/subjects']],
+                             ['label' => 'Department Setting', 'url' => ['/departments']],
                              ['label' => 'Sections Setting', 'url' => ['/sections']],
                              // ['label' => 'Monthly fee Set-up', 'url' => ['/monthly-fee']],
                              // ['label' => 'Set Discount', 'url' => ['/discount']],

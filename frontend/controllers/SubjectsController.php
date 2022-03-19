@@ -3,8 +3,8 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\Subject;
-use app\models\SubjectSearch;
+use app\models\Subjects;
+use app\models\SubjectsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * SubjectController implements the CRUD actions for Subject model.
  */
-class SubjectController extends Controller
+class SubjectsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -35,7 +35,7 @@ class SubjectController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SubjectSearch();
+        $searchModel = new SubjectsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -64,7 +64,7 @@ class SubjectController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Subject();
+        $model = new Subjects();
 
        if ($model->load(Yii::$app->request->post()) ) {
             $model->created_by = Yii::$app->user->id;
@@ -126,7 +126,7 @@ class SubjectController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Subject::findOne($id)) !== null) {
+        if (($model = Subjects::findOne($id)) !== null) {
             return $model;
         }
 

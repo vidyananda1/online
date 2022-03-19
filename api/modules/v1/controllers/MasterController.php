@@ -93,7 +93,11 @@ class MasterController extends ActiveController
 							$dept = Departments::find()->where(['id'=>$request->id])->one();
 
 							if($dept){
-								$dept->dept_name = $request->department_name;
+								if(isset($request->department_name)){
+									$dept->dept_name = $request->department_name;
+								}else{
+									$dept->dept_name = $dept->dept_name;
+								}
 								$dept->updated_by = $user->id;
 								$dept->updated_date = date('y/m/d');
 
@@ -201,12 +205,22 @@ class MasterController extends ActiveController
 							$sec = Sections::find()->where(['id'=>$request->id])->one();
 
 							if($sec){
-								$model->section_name = $request->section_name;
-								$model->dept_id = $request->department_id;
-								$dept->updated_by = $user->id;
-								$dept->updated_date = date('y/m/d');
+								if(isset($request->section_name)){
+									$sec->section_name = $request->section_name;
+								}else{
+									$sec->section_name = $sec->section_name;
+								}
 
-								if($dept->save()){
+								if(isset($request->department_id)){
+									$sec->dept_id = $request->department_id;
+								}else{
+									$sec->dept_id = $sec->dept_id;
+								}
+								
+								$sec->updated_by = $user->id;
+								$sec->updated_date = date('y/m/d');
+
+								if($sec->save()){
 									$data = ['status'=>'success', 'msg'=>'Section updated'];
 										}else{
 											$data = ['status'=>'fail', 'msg'=>'Fail to update'];
@@ -310,12 +324,21 @@ class MasterController extends ActiveController
 
 							if($sub){
 								// $model->dept_id = $request->department_id;
-								$model->sub_name = $request->subject_name;
-								$model->sub_code = $request->subject_code;
-								$dept->updated_by = $user->id;
-								$dept->updated_date = date('y/m/d');
+								if(isset($request->subject_name)){
+									$sub->sub_name = $request->subject_name;
+								}else{
+									$sub->sub_name = $sub->sub_name;
+								}
 
-								if($dept->save()){
+								if(isset($request->subject_code)){
+									$sub->sub_code = $request->subject_code;
+								}else{
+									$sub->sub_code = $sub->sub_code;
+								}
+								$sub->updated_by = $user->id;
+								$sub->updated_date = date('y/m/d');
+
+								if($sub->save()){
 									$data = ['status'=>'success', 'msg'=>'Subject updated'];
 										}else{
 											$data = ['status'=>'fail', 'msg'=>'Fail to update'];
@@ -421,14 +444,33 @@ class MasterController extends ActiveController
 							$exm = Examinations::find()->where(['id'=>$request->id])->one();
 
 							if($exm){
-								$model->exam_name = $request->exam_name;
-								$model->dept_id = $request->department_id;
-								$model->sec_id = $request->section_id;
-								$model->start_date = $request->start_date;
-								$dept->updated_by = $user->id;
-								$dept->updated_date = date('y/m/d');
+								if(isset($request->exam_name)){
+									$exm->exam_name = $request->exam_name;
+								}else{
+									$exm->exam_name = $exm->exam_name;
+								}
 
-								if($dept->save()){
+								if(isset($request->department_id)){
+									$exm->dept_id = $request->department_id;
+								}else{
+									$exm->dept_id = $exm->dept_id;
+								}
+
+								if(isset($request->section_id)){
+									$exm->section_id = $request->section_id;
+								}else{
+									$exm->section_id = $exm->section_id;
+								}
+
+								if(isset($request->start_date)){
+									$exm->start_date = $request->start_date;
+								}else{
+									$exm->start_date = $exm->start_date;
+								}
+								$exm->updated_by = $user->id;
+								$exm->updated_date = date('y/m/d');
+
+								if($exm->save()){
 									$data = ['status'=>'success', 'msg'=>'Exam updated'];
 										}else{
 											$data = ['status'=>'fail', 'msg'=>'Fail to update'];
